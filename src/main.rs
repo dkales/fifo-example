@@ -46,6 +46,8 @@ async fn main() {
             }
             interval.tick().await;
             count += 1;
+            // we add a random uuid here to make sure the message is unique for content-deduplication purposes
+            // it is later discarded
             let message = format!("{};{}", count, Uuid::new_v4());
             sns_client
                 .publish()
